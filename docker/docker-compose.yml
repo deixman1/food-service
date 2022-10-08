@@ -1,10 +1,10 @@
 version: "3.7"
 networks:
-  project_number_one_network:
-    name: project_number_one_network
+  food_service_network:
+    name: food_service_network
 services:
   nginx:
-    container_name: project_number_one_nginx
+    container_name: food_service_nginx
     image: nginx:alpine
     ports:
       - "80:80"
@@ -18,13 +18,13 @@ services:
       - ./nginx/ssl/cacert.pem:/etc/nginx/cacert.pem
       - ./../:/var/www/html
     networks:
-      - project_number_one_network
+      - food_service_network
   php-fpm:
-    container_name: project_number_one_php_fpm
+    container_name: food_service
     build:
       context: ./php-fpm/
       dockerfile: Dockerfile
-    image: project_number_one/php-fpm
+    image: food_service/php-fpm
     depends_on:
       - mysql
     ports:
@@ -32,9 +32,9 @@ services:
     volumes:
       - ./../:/var/www/html
     networks:
-      - project_number_one_network
+      - food_service_network
   mysql:
-    container_name: project_number_one_mysql
+    container_name: food_service_mysql
     image: mysql
     ports:
       - "3306:3306"
@@ -42,10 +42,10 @@ services:
       - MYSQL_ROOT_PASSWORD=1
       - MYSQL_DATABASE=database
     networks:
-      - project_number_one_network
+      - food_service_network
   phpmyadmin:
     image: phpmyadmin:fpm-alpine
-    container_name: project_number_one_phpmyadmin
+    container_name: food_service_phpmyadmin
     ports:
       - "8080:80"
     environment:
@@ -55,4 +55,4 @@ services:
     depends_on:
       - mysql
     networks:
-      - project_number_one_network
+      - food_service_network

@@ -5,7 +5,7 @@ else
   DOCKER_CMD := $(DOCKER_CMD) -f $$(pwd)/docker/docker-compose.yml
 endif
 
-DOCKER_CMD_PHP_CLI := $(DOCKER_CMD) run --rm php-cli
+DOCKER_CMD_PHP_CLI := $(DOCKER_CMD) run --rm php-fpm
 
 nginx-console:
 	$(DOCKER_CMD) exec nginx bash
@@ -29,6 +29,7 @@ composer-update:
 	$(DOCKER_CMD_PHP_CLI) composer update
 init-certificates:
 	docker run --rm -v $$(pwd)/docker/nginx/ssl:/certificates -e "SERVER=localhost" -e "SUBJECT=/C=RU/ST=Russia/L=Russia/O=IT" jacoelho/generate-certificate
+#Couldn't connect to Docker daemon at http+docker://localhost - is it running?
 docker-add-user:
 	sudo usermod -aG docker ${USER} & \
 	su ${USER}
