@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Monolog\Level;
-use Twig\Loader\FilesystemLoader;
 
 return [
     'logger' => [
@@ -12,4 +11,5 @@ return [
         'level' => Level::Debug,
     ],
     'displayErrorDetails' => true,
+    'usdaApiKey' => 'laxDjxER6fI5dQJcrnzAsxJ1FUpGTg7M1MGlHfL4',
 ];

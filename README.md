@@ -1,4 +1,4 @@
-# project-number-one
+# food-service
 Сервис получения данных о еде из базы usda
 
 # Перед установкой

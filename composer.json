@@ -1,6 +1,6 @@
 {
-    "name": "project/project-number-one",
-    "description": "project-number-one",
+    "name": "project/food_service_network",
+    "description": "food_service_network",
     "require": {
         "php": ">=8.1",
         "php-di/php-di": "^6.3",
@@ -9,7 +9,7 @@
         "slim/slim": "^4.7",
         "ext-curl": "*",
         "monolog/monolog": "^3.0",
-        "php-sage/sage": "^1.2.25"
+        "guzzlehttp/guzzle": "^7.5"
     },
     "autoload": {
         "psr-4": {
@@ -17,8 +17,16 @@
             "Logs\\": "logs/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "require-dev": {
-        "codeception/codeception": "*",
-        "jetbrains/phpstorm-attributes": "^1.0"
+        "codeception/codeception": "^5.0",
+        "jetbrains/phpstorm-attributes": "*",
+        "symfony/var-dumper": "*",
+        "codeception/module-phpbrowser": "*",
+        "codeception/module-asserts": "*"
     }
 }

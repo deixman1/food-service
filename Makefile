@@ -5,7 +5,7 @@ else
   DOCKER_CMD := $(DOCKER_CMD) -f $$(pwd)/docker/docker-compose.yml
 endif
 
-DOCKER_CMD_PHP_CLI := $(DOCKER_CMD) run --rm php-fpm
+DOCKER_CMD_PHP_CLI := $(DOCKER_CMD) exec php-fpm
 
 nginx-console:
 	$(DOCKER_CMD) exec nginx bash
@@ -34,3 +34,5 @@ docker-add-user:
 	sudo usermod -aG docker ${USER} & \
 	su ${USER}
 init: build composer-install
+php-tests:
+	$(DOCKER_CMD_PHP_CLI) php vendor/bin/codecept run --steps

@@ -17,6 +17,8 @@ services:
       - ./nginx/ssl/server.key:/etc/nginx/server.key
       - ./nginx/ssl/cacert.pem:/etc/nginx/cacert.pem
       - ./../:/var/www/html
+    extra_hosts:
+      - "localhost:host-gateway"
     networks:
       - food_service_network
   php-fpm:
@@ -24,6 +26,9 @@ services:
     build:
       context: ./php-fpm/
       dockerfile: Dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
     image: food_service/php-fpm
     depends_on:
       - mysql
