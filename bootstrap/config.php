@@ -11,5 +11,5 @@ return [
         'level' => Level::Debug,
     ],
     'displayErrorDetails' => true,
-    'usdaApiKey' => 'laxDjxER6fI5dQJcrnzAsxJ1FUpGTg7M1MGlHfL4',
+    'usdaApiKey' => 'usdaApiKey',
 ];
