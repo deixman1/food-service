@@ -32,7 +32,7 @@ class SearchFoodController extends AbstractController
         $query = $request->getQueryParams()['query'];
         try {
             $foods = $this->service->searchFoodDataByQuery($query);
-        } catch (GuzzleException $e) {
+        } catch (GuzzleException|\Throwable $e) {
             $this->logger->error($e->__toString());
             return $this->responseFactory->createResponseWithJsonData([], StatusCodeInterface::STATUS_INTERNAL_SERVER_ERROR);
         }
